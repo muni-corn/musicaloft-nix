@@ -46,18 +46,13 @@
     plymouth-theme-musicaloft-rainbow,
     ...
   }: {
-    overlays.default = final: prev: (builtins.listToAttrs (map (module: let
-        defaultPackage = module.packages.${prev.system}.default;
-      in {
-        name = defaultPackage.name;
-        value = defaultPackage;
-      }) [
-        arpeggio
-        iosevka-muse
-        matchpal
-        muse-sounds
-        muse-status
-        plymouth-theme-musicaloft-rainbow
-      ]));
+    overlays.default = final: prev: {
+      arpeggio = arpeggio.packages.${prev.system}.default;
+      iosevka-muse = iosevka-muse.packages.${prev.system}.default;
+      matchpal = matchpal.packages.${prev.system}.default;
+      muse-sounds = muse-sounds.packages.${prev.system}.default;
+      muse-status = muse-status.packages.${prev.system}.default;
+      plymouth-theme-musicaloft-rainbow = plymouth-theme-musicaloft-rainbow.packages.${prev.system}.default;
+    };
   };
 }
